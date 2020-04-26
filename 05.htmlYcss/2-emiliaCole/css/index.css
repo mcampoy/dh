@@ -22,7 +22,7 @@ body {
 #imagen {
     float: left;
     width: 75%;
-    height: 694px;
+    height: 625px;
     background-image: url('../img/emilia-home.jpg');
     background-size: cover;
     background-position: bottom;
@@ -59,13 +59,13 @@ p {
 
 #titulo {
     position: absolute;
-    margin-top: 510px;
+    margin-top: 475px;
     margin-left: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     width: 99%;
     padding: 0px;
     font-family: 'Raleway', sans-serif;
-    font-size: 36px;
+    font-size: 32px;
 }
 
 h1 {
