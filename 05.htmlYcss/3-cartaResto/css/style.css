@@ -1,6 +1,6 @@
 * {box-sizing: border-box;}
 
-body, html {
+body {
     width: 960px;
     margin: 0 auto;
     font-family: sans-serif;
