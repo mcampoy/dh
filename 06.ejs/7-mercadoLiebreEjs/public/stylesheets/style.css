@@ -14,8 +14,8 @@ ul {
 li,
 a {
   list-style: none;
-  text-decoration: none;
-  color: black;
+  text-decoration: none !important;
+  color: black !important;
 }
 
 header {
@@ -94,19 +94,22 @@ article {
   border-radius: 10px 10px 10px 10px;
 }
 
-article img {
+article a {
+  color: #666666 !important;
+}
+
+figure {
+  position: relative;
+}
+
+figure img {
   width: 100%;
   position: relative;
   border-radius: 10px 10px 0px 0px;
+  margin-bottom: 0;
 }
 
-.info {
-  border-top: 1px solid lightgrey;
-  width: 100%;
-  margin: 0px;
-}
-
-article i {
+.truck {
   height: 35px;
   color: #39b54a;
   border: 1.5px solid #39b54a;
@@ -116,8 +119,16 @@ article i {
   padding: 0.4em;
   position: absolute;
   right: 3%;
-  top: -20%;
+  top: 100%;
+  z-index: 999;
 }
+
+.info {
+  border-top: 1px solid lightgrey;
+  width: 100%;
+  margin: 0px;
+}
+
 
 article div {
   background-color: white;
@@ -145,11 +156,34 @@ article span {
   font-size: 1em;
   font-weight: 500;
   align-items: center;
-  margin: 15px 0;
+  padding: 12px 0 0 5px;
 }
 
 .mas-info {
+  text-align: left;
+  color: #666666;
+  position: relative;
+  font-size: 1em;
+  padding: 0px 5px;
   display: none;
+}
+
+.ofertas h1 {
+  margin-top: 0px;
+}
+
+.art-container:hover {
+  box-shadow: 0.5px 0.5px 5px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.art-container:hover .truck {
+  transform: rotate(360deg);
+  transition: 1.8s all;
+}
+
+.art-container:hover .mas-info {
+  display: block;
 }
 
 footer {
@@ -296,29 +330,6 @@ footer div p {
       text-align: right;
       margin-top: 15px;
       font-size: 1em;
-  }
-
-  .art-container:hover {
-      box-shadow: 0.5px 0.5px 5px 5px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-  }
-
-  .art-container:hover .info i {
-      transform: rotate(360deg);
-      transition: 1.8s all;
-  }
-  
-  .mas-info {
-      text-align: left;
-      color: #666666;
-      position: relative;
-      font-size: 1em;
-      padding: 0px 5px 10px 5px;
-      display: none;
-  }
-
-  .art-container:hover .mas-info {
-      display: block;
   }
 
 }

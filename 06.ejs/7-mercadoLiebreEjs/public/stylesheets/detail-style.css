@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: lightgray;
+}
+
+.name {
+    color: #666666;
+    font-weight: 600;
+    font-size: 1.8em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.product-container {
+    background: #fff;
+    border-radius: 15px;
+}
+
+.product-container img {
+    position: relative;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.product-container p {
+    text-align: left;
+    margin: 30px 5px;
+    margin-bottom: 80px;
+    font-size: 1.3em;
+}
+
+.product-details {
+    padding: 5px;
+}
+
+.product-details h1 {
+    font-weight: 600;
+    color: black;
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+}
+
+.precio-descuento {
+    padding: 0;
+    padding-top: 15px;
+    font-size: 1.3em;
+    font-weight: 100;
+}
+
+.tachado {
+    text-decoration: line-through;
+}
+
+.discount {
+    font-weight: 700;
+}
+
+.price{
+    font-size: 4em;
+}
+
+.pago {
+    align-items: center;
+    padding: 0;
+}
+
+.pago p {
+    color: #666666;
+    margin: 25px 0;
+    font-size: 1.1em;
+    min-width: 90%;
+}
+
+.pago i {
+    color: #39b54a;
+    padding-left: 0;
+    font-size: 1.5em;
+}
+
+
+.boton button {
+    padding: 5px;
+    background-color: #1259C3;
+    width: 100%;
+    display: block;
+    margin: 30px auto 10px;
+}
+
+footer {
+    padding-top: 30px;
+}
