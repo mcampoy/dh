@@ -3,7 +3,7 @@
 
 // const products = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/productsDataBase.json'), 'utf-8'));
 
-const products = require('../Models/product');
+const products = require('../models/product');
 
 // Divido y guardo los productos según la categoría: visitados / ofertas
 

@@ -7,7 +7,7 @@
 
 // // Divido y guardo los productos según la categoría: visitados / ofertas
 
-const products = require('../Models/product');
+const products = require('../models/product');
 
 const visited = [];
 const inSale = [];
