@@ -3,8 +3,18 @@
 }
 
 body {
-    background: lightgray;
+    margin: 0 auto;
+    background: #fff;
 }
+
+.big-container {
+    background-color: #ebebeb;
+}
+
+.product-wrapper {
+    
+    padding: 0;
+  }
 
 .name {
     color: #666666;
@@ -20,21 +30,30 @@ body {
     border-radius: 15px;
 }
 
-.product-container img {
+.product-box-image {
+    padding: 0;
+
+}
+
+.product-box-image img {
     position: relative;
     width: 100%;
     border-radius: 15px;
 }
 
-.product-container p {
+.product-box-image p {
     text-align: left;
-    margin: 30px 5px;
+    margin: 30px 0px;
     margin-bottom: 80px;
     font-size: 1.3em;
 }
 
 .product-details {
-    padding: 5px;
+    padding: 0px;
+}
+
+.product-details-info {
+    padding: 0;
 }
 
 .product-details h1 {
@@ -54,10 +73,12 @@ body {
 
 .tachado {
     text-decoration: line-through;
+    color: #39b54a;
 }
 
 .discount {
     font-weight: 700;
+    color: #39b54a;
 }
 
 .price{
@@ -65,6 +86,7 @@ body {
 }
 
 .pago {
+    display: flex;
     align-items: center;
     padding: 0;
 }
@@ -74,6 +96,7 @@ body {
     margin: 25px 0;
     font-size: 1.1em;
     min-width: 90%;
+    text-align: left;
 }
 
 .pago i {
@@ -92,5 +115,34 @@ body {
 }
 
 footer {
-    padding-top: 30px;
+    margin-top: 30px;
+}
+
+/* estilos laptop */
+
+@media (min-width: 1023px) {
+      
+    .product-box-image p {
+        margin-bottom: 30px;
+        font-size: 1.2em;
+    }
+
+    .product-details {
+        border-left: 2px solid #ebebeb;
+        padding: 15px 5px;
+    }
+
+    .product-details h1 {
+        font-size: 1.5em;
+        margin: 25px 5px 30px;
+    }
+
+    .precio-descuento {
+        padding-top:0;
+    }
+    .pago p{
+        font-size: 1em;
+    }
+
+  
 }
