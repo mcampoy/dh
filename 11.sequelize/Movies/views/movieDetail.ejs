@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.title %> </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <%- include('partials/header')  %>
+    <h2 class="titulo"><%= movie.title %> </h2>
+    <span class="rating"><%= movie.rating %> </span>
+    <span class="awards">Galardonada con <%= movie.awards %> premios</span>
+    <span class="length"><%= movie.length %> minutos </span>
+    <span class="lanzamiento"><%= movie.release_date %> </span>
+    
+    <form method="POST" action="#">
+        <button type="submit" value="borrar"> <p>Borrar</p> </button>
+        <button type="submit" value="modificar"> <p>Modificar</p> </button>
+    </form>
+</body>
+</html>

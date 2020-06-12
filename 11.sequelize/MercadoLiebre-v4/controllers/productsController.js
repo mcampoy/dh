@@ -1,10 +1,15 @@
 const fs = require("fs");
 const path = require("path");
+let db =  require('../database/models')
 
-const productsFilePath = path.join(__dirname, "../data/products-db.json");
-const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+// const productsFilePath = path.join(__dirname, "../data/products-db.json");
+// const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
-// let db = require('../database/models');
+// const db = require('../database/models');
+// function getProducts(){
+//     return db.Product.findAll()
+//     .then(function(products){
+//     return products;})}
 
 
 // Genero una función para obtener productos según su Id ya que este es el dato que viajará por parámetro
@@ -24,7 +29,10 @@ function productIdGenerator() {
 const controller = {
     // Root - Show all products
     index: (req, res) => {
-        res.render('products', {products: products})
+        db.Product.findAll()
+        .then(function(products){
+        res.render('products', {products})
+    });
     },
 
     // Detail - Detail from one product
