@@ -13,10 +13,23 @@
     <span class="awards">Galardonada con <%= movie.awards %> premios</span>
     <span class="length"><%= movie.length %> minutos </span>
     <span class="lanzamiento"><%= movie.release_date %> </span>
+    <span><%= movie.genre.name %></span> <br><br>
+    <div>
+        <ul>
+            <% for( let i = 0; i < movie.actors.length; i++ ) { %>
+                <li>
+                    <%= movie.actors[i].first_name %> <%= movie.actors[i].last_name %>
+                </li>
+            <% } %>
+        </ul>
+    </div>
     
-    <form method="POST" action="#">
-        <button type="submit" value="borrar"> <p>Borrar</p> </button>
-        <button type="submit" value="modificar"> <p>Modificar</p> </button>
-    </form>
+   
+        <a href="/movies/edit/<%= movie.id %>">
+            <button> <p>Modificar</p> </button>
+        </a>
+        <form action="/movies/delete/<%= movie.id %>" method="POST">
+                <button type="submit"> <p>Borrar</p> </button>
+        </form>
 </body>
 </html>

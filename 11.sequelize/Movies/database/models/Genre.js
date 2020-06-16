@@ -23,19 +23,28 @@ module.exports =  (sequelize, dataTypes) => {
             allowNull: false
         },
 
-        rating: {
-            type: dataTypes.DECIMAL,
-            allowNull: false
-        },
+        // rating: {
+        //     type: dataTypes.INTEGER,
+        //     allowNull: false
+        // },
 
-        active: {
-            type: dataTypes.TINYINT,
-            allowNull: false
-        }
+        // active: {
+        //     type: dataTypes.TINYINT,
+        //     allowNull: false
+        // }
     },
     {
         tableName: 'genres',
         timestamps: false
     });
+
+    Genre.associate = function(models){
+        Genre.hasMany(models.Movie, 
+        {
+            as: 'movies',
+            foreignKey: 'genre_id'
+        })
+    }
+
     return Genre;
 }
