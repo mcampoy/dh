@@ -5,7 +5,7 @@ let bcrypt = require('bcrypt');
 const {check, validationResult, body} = require('express-validator');
 
 
-// Guardo l a dirección del archivo json
+// Guardo la dirección del archivo json
 let userpath = path.join(__dirname, '../data/users.json');
 
 

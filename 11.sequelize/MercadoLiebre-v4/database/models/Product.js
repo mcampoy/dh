@@ -42,7 +42,7 @@ module.exports = (sequelize, dataTypes) => {
   },
 //    configuración de la table
   {
-  tableName: 'products', //Si el nombre de la tabla no coincide con el del modelo
+  tableName: 'productos', //Si el nombre de la tabla no coincide con el del modelo
   timestamps: false,  //Si no tengo timestamps
 
   });

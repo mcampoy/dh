@@ -46,7 +46,7 @@ let usersMiddlewares = {
                 };
             }
             return true
-            }).withMessage('El email con el que desea registrarse ya existe'),
+            }).withMessage('El email con el que desea registrarse pertenece a un usuario ya registrado'),
         ],
 
     loginValidation: [

@@ -1,4 +1,4 @@
-let db =  require('../database/models')
+let db = require('../database/models')
 let sequelize = db.sequelize;
 // const Movie = require('../database/models/Movie')
 
@@ -6,9 +6,12 @@ let sequelize = db.sequelize;
 let moviesController = {
     create: (req, res) => {
         db.Genre.findAll()
-        .then(genres => {
-            return res.render('moviesList', {genres: genres})
-        })
+            .then(genres => {
+                return res.render('moviesList', {
+                    genres: genres
+                })
+            })
+            .catch((err) => console.error(err));
     },
 
     saveMovie: (req, res) => {
@@ -20,32 +23,42 @@ let moviesController = {
             length: req.body.duracion,
             rating: req.body.rating,
         });
-       
+
         res.redirect(`/movies`);
     },
 
     index: (req, res) => {
         db.Movie.findAll()
-        .then(function(movies){
-            
-            res.render('movies', {movies})
-        });
+            .then(function (movies) {
+
+                res.render('movies', {
+                    movies
+                })
+            })
+            .catch((err) => console.error(err));
     },
 
     detail: (req, res) => {
-        
+
         db.Movie.findByPk(req.params.id, {
-            include: [{association: "genre"}, {association: "actors"}]
-        })
-        .then((movie)=> {
-            res.render('movieDetail', {movie})
-        })
+                include: [{
+                    association: "genre"
+                }, {
+                    association: "actors"
+                }]
+            })
+            .then((movie) => {
+                res.render('movieDetail', {
+                    movie
+                })
+            })
+            .catch((err) => console.error(err));
     },
 
-    delete: (req, res) =>{
+    delete: (req, res) => {
         db.Movie.destroy({
             where: {
-                id: req.params.id
+                id_users: req.params.id
             }
         });
 
@@ -58,9 +71,13 @@ let moviesController = {
         let reqGenre = db.Genre.findAll();
 
         Promise.all([reqMovie, reqGenre])
-            .then(([movie, genres])=>{
-                res.render('editMovie', {movie, genres})
-            });
+            .then(([movie, genres]) => {
+                res.render('editMovie', {
+                    movie,
+                    genres
+                })
+            })
+            .catch((err) => console.error(err));
     },
 
     update: (req, res) => {
@@ -71,38 +88,47 @@ let moviesController = {
             genre_id: req.body.genero,
             length: req.body.duracion,
             rating: req.body.rating,
-        }, 
+        },
         {
             where: {
                 id: req.params.id
             }
         });
-        console.log(req.body)
 
         res.redirect("/movies/detail/" + req.params.id)
     },
 
     new: (req, res) => {
         db.Movie.findAll({
-            order: [
-                ['release_date', "DESC"]
-            ],
-            limit: 5,
-        })
-        .then((movies) => {
-            res.render('latest', {movies})
-        })
+                order: [
+                    ['release_date', "DESC"]
+                ],
+                limit: 5,
+            })
+            .then((movies) => {
+                res.render('latest', {
+                    movies
+                })
+            })
+
+            .catch((err) => console.error(err));
     },
 
     recommended: (req, res) => {
         db.Movie.findAll({
-            where: {
-                rating: {[db.Sequelize.Op.gte]: 8}
-            }
-        })
-        .then((movies) => {
-            res.render('recommended', {movies})
-        })
+                where: {
+                    rating: {
+                        [db.Sequelize.Op.gte]: 8
+                    }
+                }
+            })
+            .then((movies) => {
+                res.render('recommended', {
+                    movies
+                })
+            })
+
+            .catch((err) => console.error(err));
     }
 }
 

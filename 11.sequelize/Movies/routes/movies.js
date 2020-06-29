@@ -14,10 +14,10 @@ router.get('/detail/:id', moviesController.detail);
 
 // Actualizar
 router.get('/edit/:id', moviesController.edit);
-router.post('/edit/:id', moviesController.update);
+router.put('/edit/:id', moviesController.update);
 
 // Eliminar
-router.post('/delete/:id', moviesController.delete)
+router.delete('/delete/:id', moviesController.delete)
 
 router.get('/new', moviesController.new);
 router.get('/recommended', moviesController.recommended);

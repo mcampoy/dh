@@ -28,7 +28,7 @@
         <a href="/movies/edit/<%= movie.id %>">
             <button> <p>Modificar</p> </button>
         </a>
-        <form action="/movies/delete/<%= movie.id %>" method="POST">
+        <form action="/movies/delete/<%= movie.id %>?_method=DELETE" method="POST">
                 <button type="submit"> <p>Borrar</p> </button>
         </form>
 </body>
