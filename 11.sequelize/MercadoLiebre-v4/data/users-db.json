@@ -159,5 +159,13 @@
   "email": "ng@y",
   "password": "$2b$10$VgNfdFrG5Hiqe1otphqPkeXhfNR3Vq0iVTOlQq8zhuCj/WTsiHVwa",
   "avatar": "avatar-1590577794857.jpg"
+ },
+ {
+  "id": 23,
+  "firstname": "Pedro",
+  "lastname": "Campoy",
+  "email": "pedro@jmail.com",
+  "password": "$2b$10$XK2P7/fhzfZEmFC/l5RxxOcZl14sVrtbHv4aCrxTyA/9hzwQ2KLa6",
+  "avatar": "avatar-1595596674402.png"
  }
 ]

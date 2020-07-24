@@ -1,123 +1,121 @@
-const fs = require("fs");
-const path = require("path");
-let db =  require('../database/models')
-
-// const productsFilePath = path.join(__dirname, "../data/products-db.json");
-// const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-
-// const db = require('../database/models');
-// function getProducts(){
-//     return db.Product.findAll()
-//     .then(function(products){
-//     return products;})}
-
-
-// Genero una función para obtener productos según su Id ya que este es el dato que viajará por parámetro
-function getProductById(id){
-    return products.find(product => product.id == id);
-};
-
-// Genero una función para generar y asignar un id a cada producto
-function productIdGenerator() {
-    if (products.length) {
-      return products.length + 1;
-    } else {
-      return 1;
-    }
-  }
+let db = require('../database/models')
 
 const controller = {
-    // Root - Show all products
-    index: (req, res) => {
-        db.Product.findAll()
-        .then(function(products){
-        res.render('products', {products})
-    });
+    // MUESTRA TODOS LOS PRODUCTOS
+    index: async (req, res) => {
+        try {
+            let products = await db.Product.findAll()
+
+            res.render('products', {
+                products
+            });
+
+        } catch (error) {
+            console.error(error)
+        }
+
     },
 
-    // Detail - Detail from one product
-    detail: (req, res) => {
-        const product = products.find((e) => {
-            return e.id == req.params.id;
-        });
-        if (!product) return res.redirect("/");
+    // DETALLE DE PRODUCTO
+    detail: async (req, res) => {
+        console.log(req.params.id)
 
-        res.render("detail", { product });
+        try {
+            let product = await db.Product.findByPk(req.params.id);
+
+            if (!product) {
+                return res.redirect("/")
+            } else {
+                return res.render("detail", {
+                    product
+                });
+            }
+        } catch (error) {
+            console.error(error)
+        }
     },
 
-    // Create - Form to create
+    sales: async (req, res) => {
+        try {
+            const products = await db.Product.findAll({
+                where: {
+                    category: 'in-sale'
+                }
+            })
+            res.render("sales", {
+                products
+                
+            });
+            }catch (err) {
+                console.error(err)
+            }
+    },
+
+    // MUESTRA EL FORMULARIO DE CREACIÓN DE PRODUCTO
     create: (req, res) => {
+
         res.render('product-create-form')
-        // Do the magic
+
     },
 
-    // Create -  Method to store
+    // CREA EL PRODUCTO
     store: (req, res) => {
-        let product = {
-            id: productIdGenerator(),
-            ...req.body,
-        };
+        console.log(req.body)
 
-        products.push(product);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '), 'utf-8');
-        
-
-        res.redirect("/products/detail/" + product.id);
-    },
-
-    // Update - Form to edit
-    edit: (req, res) => {
- 
-       let productToEdit = getProductById(req.params.id);
-
-        // Si no encuentra el producto a editar redirecciona a la Home
-
-       if (productToEdit == null) return res.redirect("/");
-
-    //    Envío a la vista el formulario para editar el producto y los datos del producto que voy a editar
-
-        res.render('product-edit-form', {productToEdit: productToEdit})
-    },
-    // Update - Method to update
-    update: (req, res) => {
-
-        let product = getProductById(req.params.id);
-
-        // Si no encuentra el producto a editar redirecciona a la Home
-        
-        if (product == null) return res.redirect("/");
-
-        //Actualizar los datos del producto. Reemplazo los datos que tenía con los que me llegan por body
-        product = {
-            ...product,
-            ...req.body,
-        };
-
-        //GUARDAR EL PRODUCTO EN LA DB
-        const index = products.findIndex((product) => {
-            return product.id == req.params.id;
-        });
-        products.splice(index, 1, product);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '), "utf-8");
-
-        res.redirect("/products/detail/" + product.id);
-    },
-
-    // Delete - Delete one product from DB
-    destroy: (req, res) => {
-        const index = products.findIndex((e) => {
-            return e.id == req.params.id;
+        db.Product.create({
+            name: req.body.name,
+            price: req.body.price,
+            discount: req.body.discount,
+            category: req.body.category,
+            description: req.body.description
         });
 
-        if (index == -1) return res.redirect("/");
-
-        products.splice(index, 1);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products), "utf-8");
 
         res.redirect("/");
+    },
+
+    // MUESTRA LA VISTA PARA ACTUALIZAR UN PRODUCTO
+    edit: async (req, res) => {
+
+        let productToEdit = await db.Product.findByPk(req.params.id);
+
+        // Si no encuentra el producto a editar redirecciona a la Home
+
+        if (productToEdit == null) return res.redirect("/");
+
+        //    Envío a la vista el formulario para editar el producto y los datos del producto que voy a editar
+
+        res.render('product-edit-form', {
+            productToEdit: productToEdit
+        })
+    },
+    // ACTUALIZA UN PRODUCTO
+    update: (req, res) => {
+
+        db.Product.update({
+            name: req.body.name,
+            price: req.body.price,
+            discount: req.body.discount,
+            category: req.body.category,
+            description: req.body.description
+
+        }, {
+            where: {
+                id: req.params.id
+            }
+        });
+        res.redirect("/products/detail/" + req.params.id);
+    },
+
+    // ELIMINA UN PRODUCTO DE LA BASE DE DATOS
+    destroy: (req, res) => {
+        db.Product.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+
+        res.redirect("/products");
     },
 };
 

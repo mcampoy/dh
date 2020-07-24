@@ -1,28 +1,50 @@
-const fs = require("fs");
-const path = require("path");
-
-const productsFilePath = path.join(__dirname, "../data/products-db.json");
-const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+let db = require('../database/models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const controller = {
-    index: (req, res) => {
-        const inSale = [];
-        const visited = [];
-        products.forEach((e) => {
-            if (e.category == "in-sale") {
-                inSale.push(e);
-            } else {
-                visited.push(e);
+    index: async (req, res) => {
+        try {
+        const inSale = await db.Product.findAll({
+            where: {
+                category: 'in-sale'
             }
-        });
+        })
+        const visited = await db.Product.findAll({
+            where: {
+                category: 'visited'
+            }
+        })
+
         res.render("index", {
             inSale,
             visited,
         });
+        }catch (err) {
+            console.error(err)
+        }
     },
-    search: (req, res) => {
-        // Do the magic
-    },
+
+    search: async(req, res) => {
+        console.log(req.query.keywords)
+        try {
+
+            let products = await db.Product.findAll({
+                where: {
+                    name: {
+                        [Op.like]: `%${req.query.keywords}%`
+                    }
+                }
+            })
+
+            return res.render('results', {
+                products,
+            })
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
 };
 
 module.exports = controller;

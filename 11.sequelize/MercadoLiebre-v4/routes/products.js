@@ -6,10 +6,8 @@ const router = express.Router();
 const productsController = require("../controllers/productsController");
 
 router.get("/", productsController.index); /* GET - All products */
-router.get(
-    "/detail/:id/",
-    productsController.detail
-); /* GET - Product detail */
+router.get("/detail/:id", productsController.detail); /* GET - Product detail */
+router.get('/sales', productsController.sales)
 
 /*** CREATE ONE PRODUCT ***/
 
@@ -23,9 +21,6 @@ router.put("/edit/:id", productsController.update); /* PUT - Update in DB */
 
 /*** DELETE ONE PRODUCT***/
 
-router.delete(
-    "/delete/:id",
-    productsController.destroy
-); /* DELETE - Delete from DB */
+router.delete("/delete/:id", productsController.destroy); /* DELETE - Delete from DB */
 
 module.exports = router;

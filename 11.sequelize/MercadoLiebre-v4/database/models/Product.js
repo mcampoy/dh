@@ -21,7 +21,7 @@ module.exports = (sequelize, dataTypes) => {
 
    price: {
     type: dataTypes.DOUBLE,
-    allowNull: false,
+    allowNull: true,
    },
 
    category: {
@@ -31,12 +31,12 @@ module.exports = (sequelize, dataTypes) => {
 
    discount: {
     type: dataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
    },
 
    image: {
     type: dataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
    }
 
   },
