@@ -44,7 +44,6 @@ const controller = {
             })
             res.render("sales", {
                 products
-                
             });
             }catch (err) {
                 console.error(err)
